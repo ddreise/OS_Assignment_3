@@ -32,7 +32,6 @@ clean:
 	-$(RM) $(BIN)/$(EXECUTABLE)
 	-$(RM) $(OBJECTS)
 
-
 run: all
 	./$(BIN)/$(EXECUTABLE)
 
