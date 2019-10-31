@@ -3,9 +3,9 @@ CFLAGS	:= -g
 
 
 ifeq ($(OS),Windows_NT)
-EXECUTABLE	:= main.exe
+EXECUTABLE	:= hexdumputility.exe
 else
-EXECUTABLE	:= main
+EXECUTABLE	:= hexdumputility
 endif
 
 
