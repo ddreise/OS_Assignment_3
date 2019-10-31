@@ -5,13 +5,12 @@
             "name": "Debug",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/bin/main",
+            "program": "${workspaceFolder}/hexdumputility",
             "args": [],
             "stopAtEntry": false,
             "cwd": "${workspaceRoot}",
             "environment": [],
-            "externalConsole": true,
-            "preLaunchTask": "build",
+            "externalConsole": false,
             "linux": {
                 "MIMode": "gdb"
             },
