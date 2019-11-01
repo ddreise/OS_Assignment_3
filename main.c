@@ -61,31 +61,30 @@ int main(int argc, char *argv[]) {
 		if (dFLAG == 1) sprintf(str, "hexdump -Cn %ld %s", MAX_FILE_SZ, argv[optind]);
 		else (sprintf(str, "hexdump -n %ld %s", MAX_FILE_SZ, argv[optind]));	// If not set, set command line to normal hexdump
 
-		fp = fopen(argv[optind], "r");			// open file
+		fp = fopen(argv[optind], "r");					// open file
 
-		fseek(fp, 0L, SEEK_END);			// find end of the file
-		sz = ftell(fp);						// report how many bytes are in file
-		if (sz > MAX_FILE_SZ) sz = MAX_FILE_SZ;	// If file is bigger than 4GB, restrict amount to hexdump
-		rewind(fp);							// return file pointer to begining
+		fseek(fp, 0L, SEEK_END);						// find end of the file
+		sz = ftell(fp);									// report how many bytes are in file
+		if (sz > MAX_FILE_SZ) sz = MAX_FILE_SZ;			// If file is bigger than 4GB, restrict amount to hexdump
+		rewind(fp);										// return file pointer to begining
 
-		// Indicate file opened
-		printf("\n\n********** %s file opened! **********\n\n", argv[optind]);	
+		printf("\n\n********** %s file opened! **********\n\n", argv[optind]);	// Indicate file opened
 
-		system(str);					// Send hexdump command to terminal
+		system(str);							// Send hexdump command to terminal
 		
 		printf("\n\nEND OF FILE\n\n");
 		
 		fclose(fp);								// close file
 
-		// Indicate file closed
-		printf("\n\n********** %s file closed! **********\n\n", argv[optind]);	
+		printf("\n\n********** %s file closed! **********\n\n", argv[optind]);	// Indicate file closed
 
 	}
 
 
-
+	// If too few arguments or filename is invalid...
 	else if ((argc <= 1) | (system(test)!=0)) {
-		sprintf(str, "hexdump -n %d /dev/urandom", MAX_RDM_FILE_SZ);
+
+		sprintf(str, "hexdump -n %d /dev/urandom", MAX_RDM_FILE_SZ);	// Set command line argument to hexdump /dev/urandom
 
 		// Indicate error if improper arguments used
 		fprintf(stderr, "\nERROR: Too few arguments or file doesn't exist. Hexdumping /dev/urandom instead.\n");
@@ -94,7 +93,8 @@ int main(int argc, char *argv[]) {
 
 		printf("\n\n********** /dev/urandom file opened! **********\n\n");	
 
-		system(str);					// Send hexdump command to terminal
+		system(str);							// Send hexdump command to terminal
+		
 		printf("\n\nEND OF FILE\n");
 		
 		fclose(fp);								// close file
