@@ -50,7 +50,7 @@ int main(int argc, char *argv[]) {
 
 	if( hFLAG == 1)  helpmenu();		// If help menu flag detected, run help menu			
 
-	if( argv[optind] != NULL ) sprintf(test, "test -a %s", argv[optind]);	// If first argument is not NULL, ensure filename is actual file
+	if( argv[optind] != NULL ) sprintf(test, "test  %s", argv[optind]);	// If first argument is not NULL, ensure filename is actual file
 
 	if ((argc >= 2) & (system(test)==0)){	// If the number of arguments is greater than or equal to 2, and the filename is valid
 
