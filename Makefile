@@ -9,5 +9,5 @@ EXECUTABLE	:= hexdumputility
 endif
 
 
-$(EXECUTABLE): main.c
+$(EXECUTABLE): main.c helpmenu.c
 	$(CC) $(CFLAGS)  $^ -o $@
