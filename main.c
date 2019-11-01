@@ -27,45 +27,39 @@ int main(int argc, char *argv[]) {
 	unsigned long int sz;	// Variable for file size in bytes
 	char str[256];			// File string. Max 256 characters
 	int option;				// command line flag variable
-	int dFLAG = 0;
-	int hFLAG = 0;
+	int dFLAG = 0;			// ASCII character flag
+	int hFLAG = 0;			// Help menu flag
 
 		
-	while((option = getopt (argc, argv, "dh")) != -1){
+	while((option = getopt (argc, argv, "dh")) != -1){		// Checks for command line options
 		switch(option)
 		{
-			case 'd':
+			case 'd':					// If [-d], set flag to output ASCII characters
 				dFLAG = 1;
 				break;
 			
-			case 'h':
+			case 'h':					// If [-h], set flag to output help menu
 				hFLAG = 1;
 				break;
 
 			default:
-				fprintf(stderr, "Usage: hexdumputility [-d] [-h] filename\n");
+				fprintf(stderr, "Usage: hexdumputility [-d] [-h] filename\n");	// If error detected, output standard error message
 				exit(EXIT_FAILURE);
 		}
 	}
 
-	if( hFLAG == 1)  helpmenu();
-	if( argv[optind] != NULL ) sprintf(test, "test -a %s", argv[optind]);
+	if( hFLAG == 1)  helpmenu();		// If help menu flag detected, run help menu			
 
-	if ((argc >= 2) & (system(test)==0)){	
+	if( argv[optind] != NULL ) sprintf(test, "test -a %s", argv[optind]);	// If first argument is not NULL, ensure filename is actual file
 
-		if (hFLAG == 1){
-			// Print help options
-			helpmenu();
+	if ((argc >= 2) & (system(test)==0)){	// If the number of arguments is greater than or equal to 2, and the filename is valid
 
-		}
+		if (hFLAG == 1) helpmenu();			// Print help menu
 		else;
 
-		if (dFLAG == 1){
-			sprintf(str, "hexdump -Cn %ld %s", MAX_FILE_SZ, argv[optind]);
-		}
-		else {
-			sprintf(str, "hexdump -n %ld %s", MAX_FILE_SZ, argv[optind]);
-		}
+		// If [-d] flag set, set command line to hexdump ASCII characters
+		if (dFLAG == 1) sprintf(str, "hexdump -Cn %ld %s", MAX_FILE_SZ, argv[optind]);
+		else (sprintf(str, "hexdump -n %ld %s", MAX_FILE_SZ, argv[optind]));	// If not set, set command line to normal hexdump
 
 		fp = fopen(argv[optind], "r");			// open file
 
